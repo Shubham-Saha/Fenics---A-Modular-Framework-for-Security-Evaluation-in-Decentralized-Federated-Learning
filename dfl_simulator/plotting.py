@@ -201,21 +201,40 @@ def plot_metrics_with_convergence(metrics, rounds_range, total_execution_time, o
     plt.plot(rounds, avg_metrics_test['Precision'], marker='^', label='Precision', color=palette[2])
     plt.plot(rounds, avg_metrics_test['Recall'], marker='d', label='Recall', color=palette[3])'''
 
-    plt.plot(rounds, avg_metrics_test['Accuracy'], marker='o', label='Accuracy(%)', color=palette[0])
-    plt.plot([x + x_offset for x in rounds], avg_metrics_test['F1 Score'], marker='s', label='F1 Score(%)', color=palette[1])
-    plt.plot(rounds, avg_metrics_test['Precision'], marker='^', label='Precision(%)', color=palette[2])
-    plt.plot([x - x_offset for x in rounds], avg_metrics_test['Recall'], marker='d', label='Recall(%)', color=palette[3])
+    # plt.plot(rounds, avg_metrics_test['Accuracy'], marker='o', label='Accuracy(%)', color=palette[0])
+    # plt.plot([x + x_offset for x in rounds], avg_metrics_test['F1 Score'], marker='s', label='F1 Score(%)', color=palette[1])
+    # plt.plot(rounds, avg_metrics_test['Precision'], marker='^', label='Precision(%)', color=palette[2])
+    # plt.plot([x - x_offset for x in rounds], avg_metrics_test['Recall'], marker='d', label='Recall(%)', color=palette[3])
+
+    # # Add convergence line to testing plot
+    # if convergence_round and convergence_round in rounds_range:
+    #     plt.axvline(x=convergence_round, color='blue', linestyle='--', label='Convergence Point')
+
+    # plt.ylabel('Metric Value')
+    # plt.xlabel('Round')
+    # Define brighter colors with higher saturation
+    bright_palette = ['#00C957', '#FF5500', '#8A2BE2', '#FF1493']  # Bright green, orange, blue, pink
+
+    # Plot with thicker, more visible lines
+    plt.plot(rounds, avg_metrics_test['Accuracy'], marker='o', label='Accuracy(%)', 
+            color=bright_palette[0], linewidth=2.0, markersize=6)
+    plt.plot([x + x_offset for x in rounds], avg_metrics_test['F1 Score'], marker='s', label='F1 Score(%)', 
+            color=bright_palette[1], linewidth=2.0, markersize=6)
+    plt.plot(rounds, avg_metrics_test['Precision'], marker='^', label='Precision(%)', 
+            color=bright_palette[2], linewidth=2.0, markersize=6)
+    plt.plot([x - x_offset for x in rounds], avg_metrics_test['Recall'], marker='d', label='Recall(%)', 
+            color=bright_palette[3], linewidth=2.0, markersize=6)
 
     # Add convergence line to testing plot
     if convergence_round and convergence_round in rounds_range:
-        plt.axvline(x=convergence_round, color='blue', linestyle='--', label='Convergence Point')
+        plt.axvline(x=convergence_round, color='#4169E1', linestyle='--', label='Convergence Point', linewidth=1.5)
 
-    plt.ylabel('Metric Value')
-    plt.xlabel('Round')
+    plt.ylabel('Metric Value', fontweight='bold')
+    plt.xlabel('Round', fontweight='bold')
     #plt.title('Average Testing Metrics per Round (Line Plot)')
     plt.xticks(rounds)
     plt.ylim(0, 1)
-    plt.legend(markerscale=0.2, prop={'size': 6})
+    plt.legend(markerscale=1.5, prop={'size': 10},loc='lower right', fontsize=10)
     plt.grid(True)
     plt.tight_layout()
     testing_line_path = os.path.join(output_dir, 'average_testing_metrics_line_plot.pdf')
