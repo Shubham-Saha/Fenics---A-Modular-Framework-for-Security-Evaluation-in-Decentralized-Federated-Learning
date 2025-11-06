@@ -196,20 +196,38 @@ class Simulator:
 
                     # Aggregation phase: Perform FedAvg aggregation after all updates are sent
                     if successful_nodes and models_state_dicts and data_sizes:
-                        # aggregated_state_dict = aggregate(models_state_dicts, data_sizes, self.logger)
-                        fedavg_strategy = AggregationFactory.get_strategy('fedavg', logger=self.logger)
-                        aggregated_state_dict = fedavg_strategy.aggregate(models_state_dicts, data_sizes)
-                        if aggregated_state_dict:
-                            # Update the global model
-                            global_model.load_state_dict(aggregated_state_dict)
-                            self.logger.info("Global model updated using Weighted Federated Averaging (FedAvg).")
+                        """
+                            Start R.Duvignau 2025-10-30 Patch
+                        """
 
-                            # Distribute the updated global model to all nodes
-                            for node in self.nodes:
-                                local_models[node].load_state_dict(aggregated_state_dict)
-                            self.logger.info("Global model distributed to all nodes.")
-                        else:
-                            self.logger.warning("Aggregation returned None. Global model not updated.")
+                        # phase-1 set updated models for training nodes
+                        updated_models = [local_models[node].state_dict() for node in nodes]
+                        for node, model in zip(successful_nodes, models_state_dicts):
+                            updated_models[node] = model
+                            
+                        # phase-2 aggregate all neighboring models locally, per node
+                        aggregated_state_dicts = {}
+                        for node in nodes:
+                            neighboring_nodes = [node] + list(G[node].keys())
+                            self.logger.info(f"node{node} is communicating with {neighboring_nodes}")
+                            neighbor_models = [updated_models[i] for i in neighboring_nodes]
+                            neighbor_sizes = [len(node_datasets[i]) for i in neighboring_nodes]
+                            ## Weighted Federated Averaging FedAvg
+                            fedavg_strategy = AggregationFactory.get_strategy('fedavg', logger=self.logger)
+                            aggregated_state_dicts[node] = fedavg_strategy.aggregate(neighbor_models, neighbor_sizes)
+
+                        # phase-3 update the local models with aggregated model
+                        for node in nodes:
+                            if node in aggregated_state_dicts:
+                                local_models[node].load_state_dict(aggregated_state_dicts[node])
+                                self.logger.info(f"Local model of node{node} updated using Weighted FedAvg.")
+                            else:
+                                self.logger.warning("Aggregation failed for node{node}. Local model not updated.")
+                                
+                        """
+                            End Patch
+                        """
+                        
                         # Record aggregation time as sending time
                         aggregation_time = sending_time_total  # Simplistic approach
                         total_aggregation_time_per_round.append(aggregation_time)

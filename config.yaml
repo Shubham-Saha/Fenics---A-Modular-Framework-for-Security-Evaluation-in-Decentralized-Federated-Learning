@@ -1,0 +1,274 @@
+# config.yaml
+
+simulations:
+  sim1:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim2:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 2
+    attacker_nodes: [0, 5]
+    attacks: [poison]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 3
+    protocol: gossip
+    alpha: 0.5
+  
+  sim3:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 1
+    attacker_nodes: [0]
+    attacks: [poison]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim4:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 1
+    attacker_nodes: [5]
+    attacks: [poison]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim5:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 2
+    attacker_nodes: [0, 5]
+    attacks: [delay]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim6:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 1
+    attacker_nodes: [0]
+    attacks: [delay]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim7:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 1
+    attacker_nodes: [5]
+    attacks: [delay]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 5
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim8:
+    rounds: 15
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 2
+    attacker_nodes: [0, 5]
+    attacks: [poison, delay]
+    use_attackers: true
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: 6
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim9:
+    rounds: 3
+    epochs: 1
+    num_nodes: 5
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.6
+    topology: fully_connected
+    topology_file: null
+    max_attacks: 0
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim10:
+    rounds: 5
+    epochs: 1
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim11:
+    rounds: 7
+    epochs: 2
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim12:
+    rounds: 10
+    epochs: 3
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim13:
+    rounds: 10
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim14:
+    rounds: 12
+    epochs: 5
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim15:
+    rounds: 15
+    epochs: 10
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim16:
+    rounds: 20
+    epochs: 10
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5
+
+  sim17:
+    rounds: 2
+    epochs: 1
+    num_nodes: 10
+    num_attackers: 0
+    attacker_nodes: []
+    attacks: []
+    use_attackers: false
+    participation_rate: 0.7
+    topology: custom
+    topology_file: topology.edgelist
+    max_attacks: null
+    gossip_steps: 0
+    protocol: neighboring
+    alpha: 0.5 
